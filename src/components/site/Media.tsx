@@ -13,6 +13,8 @@ type PhotoProps = {
   imgClassName?: string;
   /** Skip lazy loading for above-the-fold images. */
   eager?: boolean;
+  /** Set false when the frame sits inside an already-rounded card. */
+  rounded?: boolean;
 };
 
 /**
@@ -28,16 +30,19 @@ export function Photo({
   className,
   imgClassName,
   eager = false,
+  rounded = true,
 }: PhotoProps) {
   const [loaded, setLoaded] = useState(false);
 
   return (
     <figure
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-border bg-muted shadow-soft",
+        "group relative overflow-hidden bg-muted",
+        rounded ? "rounded-2xl border border-border shadow-soft" : "",
         className,
       )}
     >
+
       {!loaded && <span className="absolute inset-0 shimmer" aria-hidden="true" />}
       <img
         src={src}
