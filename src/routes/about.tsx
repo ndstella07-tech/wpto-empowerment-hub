@@ -1,7 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { PageHero, SectionHead, InfoCard, ClosingCta } from "@/components/site/Sections";
+import { Reveal } from "@/components/site/Reveal";
+import { Photo, PhotoBand } from "@/components/site/Media";
 import storyTraining from "@/assets/story-training.jpg";
+import galleryFarmer from "@/assets/gallery-farmer.jpg";
+import galleryTailoring from "@/assets/gallery-tailoring.jpg";
+import galleryTrainingField from "@/assets/gallery-training-field.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -52,14 +57,38 @@ function About() {
               Malawi's development priorities.
             </p>
           </div>
-          <img
-            src={storyTraining}
-            alt="Women in a community training session in Malawi"
-            width={1024}
-            height={1024}
-            loading="lazy"
-            className="w-full rounded-2xl border border-border object-cover shadow-soft"
-          />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Reveal from="right">
+              <Photo
+                src={storyTraining}
+                alt="Women in a community training session in Malawi"
+                width={1024}
+                height={1024}
+                caption="A community training session"
+                className="h-64 sm:h-80"
+              />
+            </Reveal>
+            <Reveal from="right" delay={110} className="sm:pt-10">
+              <Photo
+                src={galleryTailoring}
+                alt="Woman working at a sewing machine in a small workshop"
+                width={1200}
+                height={1500}
+                caption="Skills that become livelihoods"
+                className="h-64 sm:h-80"
+              />
+            </Reveal>
+            <Reveal from="up" delay={200} className="sm:col-span-2">
+              <Photo
+                src={galleryFarmer}
+                alt="Woman farmer standing in her field holding a hoe"
+                width={1200}
+                height={1500}
+                caption="Members of WPTO farmer groups in Dowa"
+                className="h-56 sm:h-64"
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -85,6 +114,14 @@ function About() {
         </div>
       </section>
 
+      <PhotoBand
+        src={galleryTrainingField}
+        alt="Community members meeting outdoors beside a demonstration plot"
+        eyebrow="Our approach"
+        title="Formed in 2020 by the women already doing the work"
+        text="WPTO exists so that community effort in Dowa and at Dzaleka is organised, funded and led locally."
+      />
+
       <section className="section-pad">
         <div className="container-page">
           <SectionHead
@@ -99,11 +136,13 @@ function About() {
               { t: "Inclusion", d: "Refugees and host communities take part on equal terms." },
               { t: "Practical results", d: "We aim for food on the table and income in the household." },
               { t: "Long view", d: "We build for the next dry season, not only for this one." },
-            ].map((v) => (
-              <div key={v.t} className="rounded-xl border border-border bg-card p-6">
-                <h3 className="text-base">{v.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v.d}</p>
-              </div>
+            ].map((v, i) => (
+              <Reveal key={v.t} from="up" delay={i * 70}>
+                <div className="h-full rounded-xl border border-border bg-card p-6">
+                  <h3 className="text-base">{v.t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v.d}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
