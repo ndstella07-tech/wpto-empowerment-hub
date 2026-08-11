@@ -3,10 +3,20 @@ import { Sprout, Utensils, Wrench, Users, HeartHandshake, ArrowRight } from "luc
 
 import { Button } from "@/components/ui/button";
 import { SectionHead, InfoCard, ClosingCta } from "@/components/site/Sections";
+import { Reveal } from "@/components/site/Reveal";
+import { Photo, PhotoMosaic, PhotoBand, PhotoStrip } from "@/components/site/Media";
 import heroImg from "@/assets/hero-women-farmers.jpg";
 import harvestImg from "@/assets/harvest.jpg";
 import storyGarden from "@/assets/story-garden.jpg";
 import storyTraining from "@/assets/story-training.jpg";
+import galleryFarmer from "@/assets/gallery-farmer.jpg";
+import galleryIrrigation from "@/assets/gallery-irrigation.jpg";
+import gallerySavings from "@/assets/gallery-savings.jpg";
+import galleryNutrition from "@/assets/gallery-nutrition.jpg";
+import galleryTailoring from "@/assets/gallery-tailoring.jpg";
+import galleryTrainingField from "@/assets/gallery-training-field.jpg";
+import gallerySchool from "@/assets/gallery-school.jpg";
+import galleryMarket from "@/assets/gallery-market.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
