@@ -1,6 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { PageHero, ClosingCta } from "@/components/site/Sections";
+import { Reveal } from "@/components/site/Reveal";
+import { Photo, PhotoBand, PhotoStrip } from "@/components/site/Media";
+import galleryIrrigation from "@/assets/gallery-irrigation.jpg";
+import galleryNutrition from "@/assets/gallery-nutrition.jpg";
+import gallerySavings from "@/assets/gallery-savings.jpg";
+import galleryFarmer from "@/assets/gallery-farmer.jpg";
+import gallerySchool from "@/assets/gallery-school.jpg";
+import galleryMarket from "@/assets/gallery-market.jpg";
+import galleryTailoring from "@/assets/gallery-tailoring.jpg";
+import galleryTrainingField from "@/assets/gallery-training-field.jpg";
 
 export const Route = createFileRoute("/our-work")({
   head: () => ({
