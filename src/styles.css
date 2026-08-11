@@ -190,3 +190,59 @@
     transform: none;
   }
 }
+
+@utility shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--color-muted) 20%,
+    color-mix(in oklab, var(--color-secondary) 70%, var(--color-background)) 40%,
+    var(--color-muted) 62%
+  );
+  background-size: 220% 100%;
+  animation: shimmer-sweep 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+  from {
+    background-position: 180% 0;
+  }
+  to {
+    background-position: -60% 0;
+  }
+}
+
+@layer components {
+  .reveal {
+    opacity: 0;
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal-up {
+    transform: translateY(28px);
+  }
+  .reveal-left {
+    transform: translate3d(-28px, 14px, 0);
+  }
+  .reveal-right {
+    transform: translate3d(28px, 14px, 0);
+  }
+  .reveal-scale {
+    transform: scale(0.96);
+  }
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .shimmer {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
