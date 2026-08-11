@@ -33,6 +33,12 @@ export function Photo({
   rounded = true,
 }: PhotoProps) {
   const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Images already cached or decoded before hydration never fire onLoad.
+  useEffect(() => {
+    if (imgRef.current?.complete) setLoaded(true);
+  }, []);
 
   return (
     <figure
@@ -42,9 +48,9 @@ export function Photo({
         className,
       )}
     >
-
       {!loaded && <span className="absolute inset-0 shimmer" aria-hidden="true" />}
       <img
+        ref={imgRef}
         src={src}
         alt={alt}
         width={width}
@@ -53,11 +59,12 @@ export function Photo({
         decoding="async"
         onLoad={() => setLoaded(true)}
         className={cn(
-          "h-full w-full object-cover transition-[transform,opacity] duration-[900ms] ease-out will-change-transform group-hover:scale-[1.04]",
+          "absolute inset-0 h-full w-full object-cover transition-[transform,opacity] duration-[900ms] ease-out will-change-transform group-hover:scale-[1.04]",
           loaded ? "opacity-100" : "opacity-0",
           imgClassName,
         )}
       />
+
       {caption && (
         <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/70 to-transparent p-4 text-xs font-medium text-primary-foreground opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:text-sm">
           {caption}
