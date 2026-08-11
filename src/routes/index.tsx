@@ -119,10 +119,10 @@ function Home() {
         </div>
       </section>
 
-      {/* About */}
+      {/* About — text with a paired portrait + detail image */}
       <section className="section-pad">
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
-          <div>
+          <Reveal from="up">
             <SectionHead
               eyebrow="About WPTO"
               title="A community-led organisation, working where the need is"
@@ -139,35 +139,90 @@ function Home() {
                 Read about us <ArrowRight className="size-4" />
               </Link>
             </Button>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-5">
+            <Reveal from="right" className="sm:col-span-3">
+              <Photo
+                src={galleryFarmer}
+                alt="Woman farmer standing in her maize field in Dowa, Malawi"
+                width={1200}
+                height={1500}
+                caption="A member of a WPTO farmer group in Dowa"
+                className="h-72 sm:h-[26rem]"
+              />
+            </Reveal>
+            <Reveal from="right" delay={120} className="sm:col-span-2 sm:self-end">
+              <Photo
+                src={harvestImg}
+                alt="Hands holding freshly harvested maize and groundnuts"
+                width={1600}
+                height={900}
+                caption="Harvest kept and stored by the household"
+                className="h-48 sm:h-72"
+              />
+            </Reveal>
           </div>
-          <img
-            src={harvestImg}
-            alt="Hands holding freshly harvested maize and groundnuts"
-            width={1600}
-            height={900}
-            loading="lazy"
-            className="w-full rounded-2xl border border-border object-cover shadow-soft"
-          />
         </div>
       </section>
 
       {/* What we do */}
       <section className="section-pad bg-sand">
         <div className="container-page">
-          <SectionHead
-            eyebrow="What we do"
-            title="Five areas of practical, everyday work"
-            intro="Each area answers a need that families in Dowa told us about."
-          />
+          <Reveal>
+            <SectionHead
+              eyebrow="What we do"
+              title="Five areas of practical, everyday work"
+              intro="Each area answers a need that families in Dowa told us about."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {programs.map((p) => (
-              <InfoCard key={p.title} title={p.title} icon={p.icon}>
-                {p.text}
-              </InfoCard>
+            {programs.map((p, i) => (
+              <Reveal key={p.title} from="up" delay={i * 80}>
+                <InfoCard title={p.title} icon={p.icon}>
+                  {p.text}
+                </InfoCard>
+              </Reveal>
             ))}
+          </div>
+
+          {/* Photo mosaic: the five areas, seen */}
+          <div className="mt-14">
+            <PhotoMosaic
+              items={[
+                {
+                  src: galleryIrrigation,
+                  alt: "Water flowing along a furrow in a small irrigated garden",
+                  width: 1600,
+                  height: 1000,
+                  caption: "Small-scale irrigation keeps gardens producing in dry months",
+                },
+                {
+                  src: galleryNutrition,
+                  alt: "Mother feeding her toddler a meal of porridge and vegetables",
+                  width: 1200,
+                  height: 1500,
+                  caption: "Feeding practices learned in nutrition sessions",
+                },
+                {
+                  src: galleryTailoring,
+                  alt: "Young woman sewing in a small tailoring workshop",
+                  width: 1200,
+                  height: 1500,
+                  caption: "Tailoring skills that turn into income",
+                },
+                {
+                  src: gallerySavings,
+                  alt: "Women meeting in a circle under a tree for a savings group session",
+                  width: 1400,
+                  height: 1000,
+                  caption: "Savings groups meeting at Dzaleka",
+                },
+              ]}
+            />
           </div>
         </div>
       </section>
+
 
       {/* Outcomes */}
       <section className="section-pad">
