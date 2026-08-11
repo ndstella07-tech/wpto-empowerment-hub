@@ -227,18 +227,22 @@ function Home() {
       {/* Outcomes */}
       <section className="section-pad">
         <div className="container-page">
-          <SectionHead
-            eyebrow="Our outcomes"
-            title="Three outcomes guide every project"
-            intro="We measure our work against these outcomes, not against activity counts."
-          />
+          <Reveal>
+            <SectionHead
+              eyebrow="Our outcomes"
+              title="Three outcomes guide every project"
+              intro="We measure our work against these outcomes, not against activity counts."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {outcomes.map((o, i) => (
-              <div key={o.title} className="rounded-xl border border-border bg-card p-7 shadow-soft">
-                <span className="font-display text-3xl text-leaf">0{i + 1}</span>
-                <h3 className="mt-3 text-lg">{o.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{o.text}</p>
-              </div>
+              <Reveal key={o.title} from="up" delay={i * 100}>
+                <div className="h-full rounded-xl border border-border bg-card p-7 shadow-soft">
+                  <span className="font-display text-3xl text-leaf">0{i + 1}</span>
+                  <h3 className="mt-3 text-lg">{o.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{o.text}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
           <Button asChild variant="ctaSoft" size="lg" className="mt-10">
@@ -248,6 +252,16 @@ function Home() {
           </Button>
         </div>
       </section>
+
+      {/* Photographic band between sections */}
+      <PhotoBand
+        src={galleryTrainingField}
+        alt="Extension trainer demonstrating conservation farming to a group of farmers"
+        eyebrow="In the field"
+        title="Training happens where the crops are, not in a classroom"
+        text="Our staff and lead farmers work plot by plot, season by season, so practices are learned in the same conditions they must survive."
+      />
+
 
       {/* How we work */}
       <section className="section-pad bg-secondary/60">
