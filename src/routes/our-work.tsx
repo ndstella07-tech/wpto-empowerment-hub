@@ -114,7 +114,7 @@ function OurWork() {
                     height={1000}
                     caption={a.caption}
                     rounded={false}
-                    className="h-56 lg:h-full"
+                    className="h-56 min-h-0 lg:h-full"
                   />
                   <div className="p-7 md:p-10">
                     <p className="eyebrow">{a.outcome}</p>

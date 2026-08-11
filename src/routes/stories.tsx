@@ -84,7 +84,7 @@ function Stories() {
                   width={1024}
                   height={1024}
                   rounded={false}
-                  className={`h-64 md:h-full ${i % 2 === 1 ? "md:order-2" : ""}`}
+                  className={`h-64 min-h-0 md:h-full ${i % 2 === 1 ? "md:order-2" : ""}`}
                 />
                 <div className="p-7 md:p-10">
                   <p className="eyebrow">{s.tag}</p>
