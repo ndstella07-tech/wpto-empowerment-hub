@@ -46,6 +46,9 @@ const areas = [
       "Cooking and feeding sessions using local foods",
     ],
     result: "Fewer months of food shortage and more diverse diets in participating households.",
+    img: galleryIrrigation,
+    imgAlt: "Water running along a furrow into a small irrigated vegetable garden",
+    caption: "Irrigated nutrition gardens in Dowa",
   },
   {
     outcome: "Outcome 2",
@@ -58,7 +61,11 @@ const areas = [
       "School support for children from vulnerable households",
       "Hygiene and safe food handling sessions",
     ],
-    result: "Better feeding practices at home and fewer children dropping out for food or income reasons.",
+    result:
+      "Better feeding practices at home and fewer children dropping out for food or income reasons.",
+    img: galleryNutrition,
+    imgAlt: "Mother preparing a nutritious meal of porridge and vegetables for her child",
+    caption: "Nutrition sessions with mothers and caregivers",
   },
   {
     outcome: "Outcome 3",
@@ -72,6 +79,9 @@ const areas = [
       "Market linkage support for group produce and products",
     ],
     result: "Households keep earning across seasons and rebuild faster after shocks.",
+    img: gallerySavings,
+    imgAlt: "Women seated in a circle counting contributions at a savings group meeting",
+    caption: "A savings group meeting at Dzaleka",
   },
 ];
 
