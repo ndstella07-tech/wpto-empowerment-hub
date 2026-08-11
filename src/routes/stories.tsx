@@ -1,9 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { PageHero, SectionHead, ClosingCta } from "@/components/site/Sections";
+import { Reveal } from "@/components/site/Reveal";
+import { Photo, PhotoMosaic } from "@/components/site/Media";
 import storyGarden from "@/assets/story-garden.jpg";
 import storyTraining from "@/assets/story-training.jpg";
 import harvestImg from "@/assets/harvest.jpg";
+import galleryFarmer from "@/assets/gallery-farmer.jpg";
+import galleryMarket from "@/assets/gallery-market.jpg";
+import gallerySavings from "@/assets/gallery-savings.jpg";
+import gallerySchool from "@/assets/gallery-school.jpg";
 
 export const Route = createFileRoute("/stories")({
   head: () => ({
@@ -70,29 +76,62 @@ function Stories() {
       <section className="section-pad">
         <div className="container-page space-y-12">
           {stories.map((s, i) => (
-            <article
-              key={s.title}
-              className="grid gap-8 overflow-hidden rounded-2xl border border-border bg-card shadow-soft md:grid-cols-2 md:gap-0"
-            >
-              <img
-                src={s.img}
-                alt={s.alt}
-                width={1024}
-                height={1024}
-                loading="lazy"
-                className={`h-64 w-full object-cover md:h-full ${i % 2 === 1 ? "md:order-2" : ""}`}
-              />
-              <div className="p-7 md:p-10">
-                <p className="eyebrow">{s.tag}</p>
-                <h2 className="mt-3 text-xl md:text-2xl">{s.title}</h2>
-                {s.body.map((p) => (
-                  <p key={p} className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    {p}
-                  </p>
-                ))}
-              </div>
-            </article>
+            <Reveal key={s.title} from={i % 2 === 1 ? "right" : "left"}>
+              <article className="grid gap-8 overflow-hidden rounded-2xl border border-border bg-card shadow-soft md:grid-cols-2 md:gap-0">
+                <Photo
+                  src={s.img}
+                  alt={s.alt}
+                  width={1024}
+                  height={1024}
+                  rounded={false}
+                  className={`h-64 min-h-0 md:h-full ${i % 2 === 1 ? "md:order-2" : ""}`}
+                />
+                <div className="p-7 md:p-10">
+                  <p className="eyebrow">{s.tag}</p>
+                  <h2 className="mt-3 text-xl md:text-2xl">{s.title}</h2>
+                  {s.body.map((p) => (
+                    <p key={p} className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              </article>
+            </Reveal>
           ))}
+
+          {/* Wider look at the same communities */}
+          <PhotoMosaic
+            items={[
+              {
+                src: galleryFarmer,
+                alt: "Woman farmer standing among tall maize plants",
+                width: 1200,
+                height: 1500,
+                caption: "A farmer group member in Dowa",
+              },
+              {
+                src: gallerySavings,
+                alt: "Savings group members recording contributions in a ledger",
+                width: 1400,
+                height: 1000,
+                caption: "Savings group record-keeping",
+              },
+              {
+                src: galleryMarket,
+                alt: "Woman arranging vegetables on a market stall",
+                width: 1400,
+                height: 1000,
+                caption: "Group produce reaching the market",
+              },
+              {
+                src: gallerySchool,
+                alt: "Children walking to school along a village path",
+                width: 1400,
+                height: 1000,
+                caption: "Children staying in school",
+              },
+            ]}
+          />
         </div>
       </section>
 

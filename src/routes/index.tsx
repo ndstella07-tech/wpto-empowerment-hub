@@ -3,10 +3,20 @@ import { Sprout, Utensils, Wrench, Users, HeartHandshake, ArrowRight } from "luc
 
 import { Button } from "@/components/ui/button";
 import { SectionHead, InfoCard, ClosingCta } from "@/components/site/Sections";
+import { Reveal } from "@/components/site/Reveal";
+import { Photo, PhotoMosaic, PhotoBand, PhotoStrip } from "@/components/site/Media";
 import heroImg from "@/assets/hero-women-farmers.jpg";
 import harvestImg from "@/assets/harvest.jpg";
 import storyGarden from "@/assets/story-garden.jpg";
 import storyTraining from "@/assets/story-training.jpg";
+import galleryFarmer from "@/assets/gallery-farmer.jpg";
+import galleryIrrigation from "@/assets/gallery-irrigation.jpg";
+import gallerySavings from "@/assets/gallery-savings.jpg";
+import galleryNutrition from "@/assets/gallery-nutrition.jpg";
+import galleryTailoring from "@/assets/gallery-tailoring.jpg";
+import galleryTrainingField from "@/assets/gallery-training-field.jpg";
+import gallerySchool from "@/assets/gallery-school.jpg";
+import galleryMarket from "@/assets/gallery-market.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -109,10 +119,10 @@ function Home() {
         </div>
       </section>
 
-      {/* About */}
+      {/* About — text with a paired portrait + detail image */}
       <section className="section-pad">
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
-          <div>
+          <Reveal from="up">
             <SectionHead
               eyebrow="About WPTO"
               title="A community-led organisation, working where the need is"
@@ -129,51 +139,110 @@ function Home() {
                 Read about us <ArrowRight className="size-4" />
               </Link>
             </Button>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-5">
+            <Reveal from="right" className="sm:col-span-3">
+              <Photo
+                src={galleryFarmer}
+                alt="Woman farmer standing in her maize field in Dowa, Malawi"
+                width={1200}
+                height={1500}
+                caption="A member of a WPTO farmer group in Dowa"
+                className="h-72 sm:h-[26rem]"
+              />
+            </Reveal>
+            <Reveal from="right" delay={120} className="sm:col-span-2 sm:self-end">
+              <Photo
+                src={harvestImg}
+                alt="Hands holding freshly harvested maize and groundnuts"
+                width={1600}
+                height={900}
+                caption="Harvest kept and stored by the household"
+                className="h-48 sm:h-72"
+              />
+            </Reveal>
           </div>
-          <img
-            src={harvestImg}
-            alt="Hands holding freshly harvested maize and groundnuts"
-            width={1600}
-            height={900}
-            loading="lazy"
-            className="w-full rounded-2xl border border-border object-cover shadow-soft"
-          />
         </div>
       </section>
 
       {/* What we do */}
       <section className="section-pad bg-sand">
         <div className="container-page">
-          <SectionHead
-            eyebrow="What we do"
-            title="Five areas of practical, everyday work"
-            intro="Each area answers a need that families in Dowa told us about."
-          />
+          <Reveal>
+            <SectionHead
+              eyebrow="What we do"
+              title="Five areas of practical, everyday work"
+              intro="Each area answers a need that families in Dowa told us about."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {programs.map((p) => (
-              <InfoCard key={p.title} title={p.title} icon={p.icon}>
-                {p.text}
-              </InfoCard>
+            {programs.map((p, i) => (
+              <Reveal key={p.title} from="up" delay={i * 80}>
+                <InfoCard title={p.title} icon={p.icon}>
+                  {p.text}
+                </InfoCard>
+              </Reveal>
             ))}
+          </div>
+
+          {/* Photo mosaic: the five areas, seen */}
+          <div className="mt-14">
+            <PhotoMosaic
+              items={[
+                {
+                  src: galleryIrrigation,
+                  alt: "Water flowing along a furrow in a small irrigated garden",
+                  width: 1600,
+                  height: 1000,
+                  caption: "Small-scale irrigation keeps gardens producing in dry months",
+                },
+                {
+                  src: galleryNutrition,
+                  alt: "Mother feeding her toddler a meal of porridge and vegetables",
+                  width: 1200,
+                  height: 1500,
+                  caption: "Feeding practices learned in nutrition sessions",
+                },
+                {
+                  src: galleryTailoring,
+                  alt: "Young woman sewing in a small tailoring workshop",
+                  width: 1200,
+                  height: 1500,
+                  caption: "Tailoring skills that turn into income",
+                },
+                {
+                  src: gallerySavings,
+                  alt: "Women meeting in a circle under a tree for a savings group session",
+                  width: 1400,
+                  height: 1000,
+                  caption: "Savings groups meeting at Dzaleka",
+                },
+              ]}
+            />
           </div>
         </div>
       </section>
 
+
       {/* Outcomes */}
       <section className="section-pad">
         <div className="container-page">
-          <SectionHead
-            eyebrow="Our outcomes"
-            title="Three outcomes guide every project"
-            intro="We measure our work against these outcomes, not against activity counts."
-          />
+          <Reveal>
+            <SectionHead
+              eyebrow="Our outcomes"
+              title="Three outcomes guide every project"
+              intro="We measure our work against these outcomes, not against activity counts."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {outcomes.map((o, i) => (
-              <div key={o.title} className="rounded-xl border border-border bg-card p-7 shadow-soft">
-                <span className="font-display text-3xl text-leaf">0{i + 1}</span>
-                <h3 className="mt-3 text-lg">{o.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{o.text}</p>
-              </div>
+              <Reveal key={o.title} from="up" delay={i * 100}>
+                <div className="h-full rounded-xl border border-border bg-card p-7 shadow-soft">
+                  <span className="font-display text-3xl text-leaf">0{i + 1}</span>
+                  <h3 className="mt-3 text-lg">{o.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{o.text}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
           <Button asChild variant="ctaSoft" size="lg" className="mt-10">
@@ -183,6 +252,16 @@ function Home() {
           </Button>
         </div>
       </section>
+
+      {/* Photographic band between sections */}
+      <PhotoBand
+        src={galleryTrainingField}
+        alt="Extension trainer demonstrating conservation farming to a group of farmers"
+        eyebrow="In the field"
+        title="Training happens where the crops are, not in a classroom"
+        text="Our staff and lead farmers work plot by plot, season by season, so practices are learned in the same conditions they must survive."
+      />
+
 
       {/* How we work */}
       <section className="section-pad bg-secondary/60">
@@ -214,11 +293,13 @@ function Home() {
       {/* Stories */}
       <section className="section-pad">
         <div className="container-page">
-          <SectionHead
-            eyebrow="From the field"
-            title="The work, seen up close"
-            intro="Short updates from the women and households we work with."
-          />
+          <Reveal>
+            <SectionHead
+              eyebrow="From the field"
+              title="The work, seen up close"
+              intro="Short updates from the women and households we work with."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {[
               {
@@ -233,27 +314,63 @@ function Home() {
                 title: "Training that turns into income",
                 text: "At Dzaleka, refugee and host community women learn tailoring and business basics together, then join savings groups to grow small enterprises.",
               },
-            ].map((s) => (
-              <article
-                key={s.title}
-                className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft"
-              >
-                <img
-                  src={s.img}
-                  alt={s.title}
-                  width={1024}
-                  height={1024}
-                  loading="lazy"
-                  className="h-60 w-full object-cover"
-                />
-                <div className="p-7">
-                  <p className="eyebrow">{s.tag}</p>
-                  <h3 className="mt-3 text-lg">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-                </div>
-              </article>
+            ].map((s, i) => (
+              <Reveal key={s.title} from={i === 0 ? "left" : "right"} delay={i * 100}>
+                <article className="group h-full overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+                  <Photo
+                    src={s.img}
+                    alt={s.title}
+                    width={1024}
+                    height={1024}
+                    rounded={false}
+                    className="h-60"
+                  />
+                  <div className="p-7">
+                    <p className="eyebrow">{s.tag}</p>
+                    <h3 className="mt-3 text-lg">{s.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
+
+          {/* Scanning strip of everyday moments */}
+          <div className="mt-10">
+            <PhotoStrip
+              items={[
+                {
+                  src: gallerySchool,
+                  alt: "Children in school uniforms walking to a primary school in Dowa",
+                  width: 1400,
+                  height: 1000,
+                  caption: "Children staying in school",
+                },
+                {
+                  src: galleryMarket,
+                  alt: "Woman selling vegetables at a busy local market stall",
+                  width: 1400,
+                  height: 1000,
+                  caption: "Selling surplus at the local market",
+                },
+                {
+                  src: galleryNutrition,
+                  alt: "Caregiver preparing a nutritious meal for young children",
+                  width: 1200,
+                  height: 1500,
+                  caption: "Nutrition at household level",
+                },
+                {
+                  src: galleryIrrigation,
+                  alt: "Treadle pump irrigating a vegetable garden",
+                  width: 1600,
+                  height: 1000,
+                  caption: "Water reaching the garden",
+                },
+              ]}
+            />
+          </div>
+
           <Button asChild variant="ctaSoft" size="lg" className="mt-10">
             <Link to="/stories">
               Read more stories <ArrowRight className="size-4" />
@@ -261,6 +378,7 @@ function Home() {
           </Button>
         </div>
       </section>
+
 
       {/* Partners */}
       <section className="section-pad bg-sand">

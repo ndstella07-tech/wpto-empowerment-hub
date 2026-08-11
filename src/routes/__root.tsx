@@ -4,15 +4,17 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { PageSkeleton } from "@/components/site/PageSkeleton";
 import { Toaster } from "@/components/ui/sonner";
 
 
@@ -131,14 +133,31 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isNavigating = useRouterState({
+    select: (s) => s.status === "pending" || s.isLoading,
+  });
+  const [showSkeleton, setShowSkeleton] = useState(false);
+
+  // Only show the skeleton if navigation takes long enough to notice.
+  useEffect(() => {
+    if (!isNavigating) {
+      setShowSkeleton(false);
+      return;
+    }
+    const t = setTimeout(() => setShowSkeleton(true), 120);
+    return () => clearTimeout(t);
+  }, [isNavigating]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
+          {showSkeleton && <PageSkeleton />}
+          <div className={showSkeleton ? "hidden" : undefined}>
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </div>
         </main>
         <Footer />
       </div>
@@ -146,4 +165,5 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
+
 
