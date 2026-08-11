@@ -293,11 +293,13 @@ function Home() {
       {/* Stories */}
       <section className="section-pad">
         <div className="container-page">
-          <SectionHead
-            eyebrow="From the field"
-            title="The work, seen up close"
-            intro="Short updates from the women and households we work with."
-          />
+          <Reveal>
+            <SectionHead
+              eyebrow="From the field"
+              title="The work, seen up close"
+              intro="Short updates from the women and households we work with."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {[
               {
@@ -312,27 +314,63 @@ function Home() {
                 title: "Training that turns into income",
                 text: "At Dzaleka, refugee and host community women learn tailoring and business basics together, then join savings groups to grow small enterprises.",
               },
-            ].map((s) => (
-              <article
-                key={s.title}
-                className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft"
-              >
-                <img
-                  src={s.img}
-                  alt={s.title}
-                  width={1024}
-                  height={1024}
-                  loading="lazy"
-                  className="h-60 w-full object-cover"
-                />
-                <div className="p-7">
-                  <p className="eyebrow">{s.tag}</p>
-                  <h3 className="mt-3 text-lg">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-                </div>
-              </article>
+            ].map((s, i) => (
+              <Reveal key={s.title} from={i === 0 ? "left" : "right"} delay={i * 100}>
+                <article className="group h-full overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+                  <Photo
+                    src={s.img}
+                    alt={s.title}
+                    width={1024}
+                    height={1024}
+                    rounded={false}
+                    className="h-60"
+                  />
+                  <div className="p-7">
+                    <p className="eyebrow">{s.tag}</p>
+                    <h3 className="mt-3 text-lg">{s.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
+
+          {/* Scanning strip of everyday moments */}
+          <div className="mt-10">
+            <PhotoStrip
+              items={[
+                {
+                  src: gallerySchool,
+                  alt: "Children in school uniforms walking to a primary school in Dowa",
+                  width: 1400,
+                  height: 1000,
+                  caption: "Children staying in school",
+                },
+                {
+                  src: galleryMarket,
+                  alt: "Woman selling vegetables at a busy local market stall",
+                  width: 1400,
+                  height: 1000,
+                  caption: "Selling surplus at the local market",
+                },
+                {
+                  src: galleryNutrition,
+                  alt: "Caregiver preparing a nutritious meal for young children",
+                  width: 1200,
+                  height: 1500,
+                  caption: "Nutrition at household level",
+                },
+                {
+                  src: galleryIrrigation,
+                  alt: "Treadle pump irrigating a vegetable garden",
+                  width: 1600,
+                  height: 1000,
+                  caption: "Water reaching the garden",
+                },
+              ]}
+            />
+          </div>
+
           <Button asChild variant="ctaSoft" size="lg" className="mt-10">
             <Link to="/stories">
               Read more stories <ArrowRight className="size-4" />
@@ -340,6 +378,7 @@ function Home() {
           </Button>
         </div>
       </section>
+
 
       {/* Partners */}
       <section className="section-pad bg-sand">
