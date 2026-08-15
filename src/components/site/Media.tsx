@@ -59,7 +59,7 @@ export function Photo({
         decoding="async"
         onLoad={() => setLoaded(true)}
         className={cn(
-          "absolute inset-0 h-full w-full object-cover transition-[transform,opacity] duration-[900ms] ease-out will-change-transform group-hover:scale-[1.04]",
+          "absolute inset-0 h-full w-full object-cover transition-opacity duration-[900ms] ease-out",
           loaded ? "opacity-100" : "opacity-0",
           imgClassName,
         )}

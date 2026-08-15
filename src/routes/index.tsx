@@ -93,7 +93,6 @@ function Home() {
           height={1088}
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-primary/70" />
         <div className="container-page relative py-24 md:py-36">
           <div className="max-w-2xl text-primary-foreground">
             <p className="rise-in eyebrow text-primary-foreground/75">
@@ -124,7 +123,6 @@ function Home() {
         <div className="container-page grid items-center gap-12 lg:grid-cols-2">
           <Reveal from="up">
             <SectionHead
-              eyebrow="About WPTO"
               title="A community-led organisation, working where the need is"
               intro="Women Palm Tree Organisation (WPTO) is a registered Malawian organisation formed in 2020. We are based in Dowa District, at Dzaleka Refugee Camp."
             />
@@ -170,7 +168,6 @@ function Home() {
         <div className="container-page">
           <Reveal>
             <SectionHead
-              eyebrow="What we do"
               title="Five areas of practical, everyday work"
               intro="Each area answers a need that families in Dowa told us about."
             />
@@ -185,41 +182,7 @@ function Home() {
             ))}
           </div>
 
-          {/* Photo mosaic: the five areas, seen */}
-          <div className="mt-14">
-            <PhotoMosaic
-              items={[
-                {
-                  src: galleryIrrigation,
-                  alt: "Water flowing along a furrow in a small irrigated garden",
-                  width: 1600,
-                  height: 1000,
-                  caption: "Small-scale irrigation keeps gardens producing in dry months",
-                },
-                {
-                  src: galleryNutrition,
-                  alt: "Mother feeding her toddler a meal of porridge and vegetables",
-                  width: 1200,
-                  height: 1500,
-                  caption: "Feeding practices learned in nutrition sessions",
-                },
-                {
-                  src: galleryTailoring,
-                  alt: "Young woman sewing in a small tailoring workshop",
-                  width: 1200,
-                  height: 1500,
-                  caption: "Tailoring skills that turn into income",
-                },
-                {
-                  src: gallerySavings,
-                  alt: "Women meeting in a circle under a tree for a savings group session",
-                  width: 1400,
-                  height: 1000,
-                  caption: "Savings groups meeting at Dzaleka",
-                },
-              ]}
-            />
-          </div>
+
         </div>
       </section>
 
@@ -229,7 +192,6 @@ function Home() {
         <div className="container-page">
           <Reveal>
             <SectionHead
-              eyebrow="Our outcomes"
               title="Three outcomes guide every project"
               intro="We measure our work against these outcomes, not against activity counts."
             />
@@ -253,21 +215,11 @@ function Home() {
         </div>
       </section>
 
-      {/* Photographic band between sections */}
-      <PhotoBand
-        src={galleryTrainingField}
-        alt="Extension trainer demonstrating conservation farming to a group of farmers"
-        eyebrow="In the field"
-        title="Training happens where the crops are, not in a classroom"
-        text="Our staff and lead farmers work plot by plot, season by season, so practices are learned in the same conditions they must survive."
-      />
-
 
       {/* How we work */}
       <section className="section-pad bg-secondary/60">
         <div className="container-page grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <SectionHead
-            eyebrow="How we work"
             title="Local solutions, built with the people who use them"
           />
           <div className="grid gap-5 sm:grid-cols-2">
@@ -295,7 +247,6 @@ function Home() {
         <div className="container-page">
           <Reveal>
             <SectionHead
-              eyebrow="From the field"
               title="The work, seen up close"
               intro="Short updates from the women and households we work with."
             />
@@ -335,41 +286,7 @@ function Home() {
             ))}
           </div>
 
-          {/* Scanning strip of everyday moments */}
-          <div className="mt-10">
-            <PhotoStrip
-              items={[
-                {
-                  src: gallerySchool,
-                  alt: "Children in school uniforms walking to a primary school in Dowa",
-                  width: 1400,
-                  height: 1000,
-                  caption: "Children staying in school",
-                },
-                {
-                  src: galleryMarket,
-                  alt: "Woman selling vegetables at a busy local market stall",
-                  width: 1400,
-                  height: 1000,
-                  caption: "Selling surplus at the local market",
-                },
-                {
-                  src: galleryNutrition,
-                  alt: "Caregiver preparing a nutritious meal for young children",
-                  width: 1200,
-                  height: 1500,
-                  caption: "Nutrition at household level",
-                },
-                {
-                  src: galleryIrrigation,
-                  alt: "Treadle pump irrigating a vegetable garden",
-                  width: 1600,
-                  height: 1000,
-                  caption: "Water reaching the garden",
-                },
-              ]}
-            />
-          </div>
+
 
           <Button asChild variant="ctaSoft" size="lg" className="mt-10">
             <Link to="/stories">
@@ -384,7 +301,6 @@ function Home() {
       <section className="section-pad bg-sand">
         <div className="container-page">
           <SectionHead
-            eyebrow="Partners"
             title="We grow through partnership"
             intro="WPTO works with partners across government, civil society and the community. Partnership is how we reach more households without duplicating effort."
           />
